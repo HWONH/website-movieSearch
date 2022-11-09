@@ -1,6 +1,6 @@
 <template>
   <header>
-    <Logo /> <!-- Logo 컴포넌트 추가 -->
+    <Logo />
     <div class="nav nav-pills">
       <div
         v-for="nav in navigations"
@@ -9,6 +9,7 @@
         <RouterLink
           :to="nav.href"
           active-class="active"
+          :class="{active: isMatch(nav.path)}"
           class="nav-link">
           {{nav.name}}
         </RouterLink>
@@ -18,9 +19,9 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo' // Logo 컴포넌트 불러오기
+import Logo from '~/components/Logo'
 export default {
-  components: { // Logo 컴포넌트 설정
+  components: {
     Logo
   },
   data() {
@@ -32,13 +33,20 @@ export default {
         },
         {
           name: 'Movie',
-          href: '/movie/tt4520988'
+          href: '/movie/tt4520988',
+          path: /^\/movie/ // '/movie' 로 시작하는 정규표현식
         },
         {
           name: 'About',
           href: '/about'
         }
       ]
+    }
+  },
+  methods: {
+    isMatch(path) {
+      if(!path) return false
+      return path.test(this.$route.fullPath)
     }
   }
 }
