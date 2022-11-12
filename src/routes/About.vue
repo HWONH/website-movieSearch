@@ -2,8 +2,8 @@
   <div class="about">
     <div class="photo">
       <img
-        :src="image"
-        :alt="name" />
+        src="~/assets/logo.png"
+        :alt="name" /> <!-- :src="image" -->
     </div>
     <div class="name">
       {{name}}

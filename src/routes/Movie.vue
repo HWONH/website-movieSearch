@@ -25,7 +25,7 @@
         class="poster">
         <Loader
           v-if="imageLoading"
-          absolute /> <!-- Loader 컴포넌트 사용 -->
+          absolute />
       </div>
       <div class="specs">
         <div class="title">
@@ -81,7 +81,7 @@ export default {
   },
   data() {
     return {
-      imageLoading: true // 데이터 추가
+      imageLoading: true
     }
   },
   computed: {
@@ -212,6 +212,34 @@ export default {
         color: $black;
         font-family: 'Oswald', sans-serif;
         font-size: 20px;
+      }
+    }
+    @include media-breakpoint-down(xl) {
+      .poster {
+        width: 300px;
+        height: calc(300px * 3 / 2);
+        margin-right: 40px;
+      }
+    }
+    @include media-breakpoint-down(lg) {
+      display: block;
+      .poster {
+        margin: 0 0 40px 0;
+      }
+    }
+    @include media-breakpoint-down(md) {
+      .specs {
+        .title {
+          font-size: 50px;
+        }
+        .ratings {
+          .rating-wrap {
+            display: block;
+            .rating {
+              margin: 10px 0 0 0;
+            }
+          }
+        }
       }
     }
   }
